@@ -12,3 +12,14 @@ const map = new mapboxgl.Map({
 map.on('load', function () {
     map.getCanvas().style.filter = 'grayscale(100%)';
 });
+
+// Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", () => {
+  const animatedImage = document.getElementById("animatedImage");
+
+  // Add a click event listener to the image
+  document.body.addEventListener("click", () => {
+    // Replace the image source with the new image
+    animatedImage.src = "asset/4_diagram-01.png";
+  });
+});

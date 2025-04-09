@@ -1,10 +1,16 @@
+/* Define the custom font */
+@font-face {
+  font-family: 'Gendy';
+  src: url('asset/Super\ Ocean\ Personal\ Use.ttf') format('opentype');
+}
+
 /* Reset and full viewport setup */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: sans-serif;
+    font-family: 'Gendy', sans-serif;
     position: relative;
   }
   
@@ -92,5 +98,28 @@ body, html {
     }
     to {
       opacity: 1;
+    }
+  }
+
+  /* Style for the animated image */
+  .animated-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1); /* Start small in the center */
+    animation: growToFullScreen 2s ease-in-out forwards; /* Animate to full screen */
+    z-index: 10;
+  }
+
+  /* Animation to grow the image */
+  @keyframes growToFullScreen {
+    0% {
+      transform: translate(-50%, -50%) scale(0.1); /* Start small */
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1); /* Fill the screen */
+      width: 70vw;
+      height: 70vh;
+      object-fit: cover;
     }
   }
