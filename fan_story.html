@@ -1,46 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Repository</title>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fan Story - Memory Repository</title>
+  <!-- Project CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <header class="fixed-header">
-        <ul class="toc">
-            <h1><a href="index.html" style="color: rgb(0, 0, 0); text-decoration: none;">Memory Repository</a></h1>
-            <h1></h1><a href="index.html">Index</a></h1>
-        </ul>
-    </header>
+  <!-- Shared fixed header with navigation -->
+  <header class="fixed-header">
+    <h1><a class="header-link" href="index.html">Memory Repository</a></h1>
+    <nav>
+      <ul class="toc">
+        <li><a href="index.html">Index</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Animated Image -->
-    <div class="interface_container">
-        <img id="animatedImage" src="asset/0403_diagram.png" alt="Diagram" class="animated-image" data-step="0" onclick="cycleImage()" />
-    </div>
+  <!-- Animated Image container -->
+  <div class="interface_container">
+    <img id="animatedImage" src="asset/0403_diagram.png" alt="Diagram" class="animated-image" data-step="0">
+  </div>
 
-    <script src="main.js"></script>
-    <script>
-        function cycleImage() {
-            var img = document.getElementById('animatedImage');
-            var step = parseInt(img.getAttribute('data-step') || '0', 10);
-            if (step === 0) {
-                img.src = 'asset/4_diagram-01.png';
-                img.setAttribute('data-step', '1');
-            } else if (step === 1) {
-                img.src = 'asset/4_diagram-02.png';
-                img.setAttribute('data-step', '2');
-            } else if (step === 2) { 
-                img.src = 'asset/4_diagram-03.png';
-                img.setAttribute('data-step', '3');
-            } else if (step === 3) {
-                img.src = 'asset/4_diagram-04.png';
-                img.setAttribute('data-step', '4');
-            }
-        }
-    </script>
+  <script src="main.js"></script>
 </body>
 </html>

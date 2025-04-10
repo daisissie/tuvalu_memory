@@ -1,11 +1,18 @@
-/* Define the custom font */
-@font-face {
-  font-family: 'Gendy';
-  src: url('asset/Super\ Ocean\ Personal\ Use.ttf') format('opentype');
-}
+/* style.css */
 
-/* Reset and full viewport setup */
-body, html {
+/* Custom Font */
+@font-face {
+    font-family: 'Gendy';
+    src: url('asset/Super Ocean Personal Use.ttf') format('opentype');
+  }
+  
+  /* Reset and Base Styles */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html, body {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -14,7 +21,7 @@ body, html {
     position: relative;
   }
   
-  /* Background layer using an image element */
+  /* Background Layer */
   .background {
     position: absolute;
     top: 0;
@@ -27,102 +34,132 @@ body, html {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.3; /* 50% transparency */
+    opacity: 0.3;
   }
   
-  /* Container for text words */
-  .text-container {
+  /* Fixed Header and Navigation */
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .fixed-header h1 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  .header-link {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .fixed-header nav ul.toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  .fixed-header nav ul.toc li {
+    margin-right: 15px;
+  }
+  .fixed-header nav ul.toc li a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  /* Interface Container for Animated Image */
+  .interface_container {
     position: relative;
     width: 100%;
     height: 100%;
   }
   
-  /* Base style for words with a waving and fading animation */
+  /* Animated Image Styles */
+  .animated-image {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    animation: growToFullScreen 4s ease-in-out forwards;
+    z-index: 10;
+    max-width: 100%;
+    height: fit-content;
+    object-fit: contain;
+  }
+  
+  /* Grow-to-Full-Screen Animation */
+  @keyframes growToFullScreen {
+    0% {
+      transform: translate(-50%, -50%) scale(0.1);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+    }
+  }
+  
+  /* Text Container and Word Animations (for index.html) */
+  .text-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
   .word {
     position: absolute;
     color: rgb(100, 83, 83);
-    font-size: 1em;
+    font-size: 1.3em;
     font-weight: bold;
-    /* Apply two animations: wave (infinite) and fadeIn (runs once) */
     animation: wave 10s infinite ease-in-out, fadeIn 3s ease forwards;
-    opacity: 0; /* Start transparent for the fade-in effect */
+    opacity: 0;
   }
   
-  /* Assign random starting positions for each word */
-  .word1 { top: 15%; left: 20%; animation-delay: 0s, 0s; }
-  .word2 { top: 40%; left: 65%; animation-delay: 0.5s, 0.5s; }
-  .word3 { top: 60%; left: 35%; animation-delay: 1s, 1s; }
-  .word4 { top: 80%; left: 10%; animation-delay: 0.2s, 0.2s; }
-  .word5 { top: 10%; left: 75%; animation-delay: 1.5s, 1.5s; }
-  .word6 { top: 20%; left: 50%; animation-delay: 0s, 0s; }
-  .word7 { top: 10%; left: 55%; animation-delay: 2s, 2s; }
-  .word8 { top: 20%; left: 25%; animation-delay: 1.2s, 1.2s; }
-  .word9 { top: 70%; left: 15%; animation-delay: 0.7s, 0.7s; }
+  /* Individual word positions and delays */
+  .word1  { top: 15%; left: 20%; animation-delay: 0s, 0s; }
+  .word2  { top: 40%; left: 65%; animation-delay: 0.5s, 0.5s; }
+  .word3  { top: 60%; left: 35%; animation-delay: 1s, 1s; }
+  .word4  { top: 80%; left: 10%; animation-delay: 0.2s, 0.2s; }
+  .word5  { top: 10%; left: 75%; animation-delay: 1.5s, 1.5s; }
+  .word6  { top: 20%; left: 50%; animation-delay: 0s, 0s; }
+  .word7  { top: 10%; left: 55%; animation-delay: 2s, 2s; }
+  .word8  { top: 20%; left: 25%; animation-delay: 1.2s, 1.2s; }
+  .word9  { top: 70%; left: 15%; animation-delay: 0.7s, 0.7s; }
   .word10 { top: 25%; left: 70%; animation-delay: 1s, 1s; }
   .word11 { top: 65%; left: 50%; animation-delay: 2s, 2s; }
   .word12 { top: 35%; left: 60%; animation-delay: 1.4s, 1.4s; }
   .word13 { top: 50%; left: 10%; animation-delay: 1.9s, 1.9s; }
-    .word14 { top: 30%; left: 80%; animation-delay: 0.3s, 0.3s; }
-    .word15 { top: 55%; left: 40%; animation-delay: 0.8s, 0.8s; }
-    .word16 { top: 75%; left: 30%; animation-delay: 1.6s, 1.6s; }
-    .word17 { top: 5%; left: 85%; animation-delay: 0.4s, 0.4s; }
-    .word18 { top: 45%; left: 20%; animation-delay: 1.1s, 1.1s; }
-    .word19 { top: 85%; left: 55%; animation-delay: 0.9s, 0.9s; }
-    .word20 { top: 90%; left: 65%; animation-delay: 1.3s, 1.3s; }
-    .word21 { top: 95%; left: 75%; animation-delay: 0.6s, 0.6s; }
-    .word22 { top: 15%; left: 90%; animation-delay: 1.7s, 1.7s; }
+  .word14 { top: 30%; left: 80%; animation-delay: 0.3s, 0.3s; }
+.word15 { top: 55%; left: 40%; animation-delay: 0.8s, 0.8s; color: rgb(65, 143, 222); }
+  .word16 { top: 75%; left: 30%; animation-delay: 1.6s, 1.6s; }
+  .word17 { top: 5%; left: 85%; animation-delay: 0.4s, 0.4s; }
+  .word18 { top: 45%; left: 20%; animation-delay: 1.1s, 1.1s; }
+  .word19 { top: 85%; left: 55%; animation-delay: 0.9s, 0.9s; }
+  .word20 { top: 90%; left: 65%; animation-delay: 1.3s, 1.3s; }
+  .word21 { top: 95%; left: 75%; animation-delay: 0.6s, 0.6s; }
+  .word22 { top: 15%; left: 90%; animation-delay: 1.7s, 1.7s; }
   
-  /* Keyframes for the bigger waving motion in all directions */
+  /* Waving motion animation */
   @keyframes wave {
-    0% {
-      transform: translate(0, 0);
-    }
-    25% {
-      transform: translate(60px, -60px);
-    }
-    50% {
-      transform: translate(-60px, 60px);
-    }
-    75% {
-      transform: translate(45px, -45px);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(60px, -60px); }
+    50%  { transform: translate(-60px, 60px); }
+    75%  { transform: translate(45px, -45px); }
+    100% { transform: translate(0, 0); }
   }
   
-  /* Keyframes for the fadeIn effect */
+  /* Fade-in animation */
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* Style for the animated image */
-  .animated-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.1); /* Start small in the center */
-    animation: growToFullScreen 2s ease-in-out forwards; /* Animate to full screen */
-    z-index: 10;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain; /* ensures the whole image is visible without cropping */
-  }
-
-  /* Animation to grow the image */
-  @keyframes growToFullScreen {
-    0% {
-      transform: translate(-50%, -50%) scale(0.1); /* Start small */
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(1); /* Fill the screen */
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
