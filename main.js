@@ -17,9 +17,11 @@ map.on('load', function () {
 document.addEventListener("DOMContentLoaded", () => {
   const animatedImage = document.getElementById("animatedImage");
 
-  // Add a click event listener to the image
-  document.body.addEventListener("click", () => {
-    // Replace the image source with the new image
-    animatedImage.src = "asset/4_diagram-01.png";
+  // Wait until the animated image has finished its animation.
+  animatedImage.addEventListener("animationend", () => {
+    // After animation ends, wherever the user clicks, replace the image source.
+    document.body.addEventListener("click", () => {
+      animatedImage.src = "asset/4_diagram-01.png";
+    });
   });
 });

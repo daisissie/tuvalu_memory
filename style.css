@@ -109,6 +109,9 @@ body, html {
     transform: translate(-50%, -50%) scale(0.1); /* Start small in the center */
     animation: growToFullScreen 2s ease-in-out forwards; /* Animate to full screen */
     z-index: 10;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* ensures the whole image is visible without cropping */
   }
 
   /* Animation to grow the image */
@@ -118,8 +121,8 @@ body, html {
     }
     100% {
       transform: translate(-50%, -50%) scale(1); /* Fill the screen */
-      width: 70vw;
-      height: 70vh;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
     }
   }

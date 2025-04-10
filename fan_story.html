@@ -12,16 +12,35 @@
 <body>
     <header class="fixed-header">
         <ul class="toc">
-            <h1><a href="index.html" style="color: rgb(0, 0, 0); text-decoration: none;">Memory Tides</a></h1>
+            <h1><a href="index.html" style="color: rgb(0, 0, 0); text-decoration: none;">Memory Repository</a></h1>
             <h1></h1><a href="index.html">Index</a></h1>
         </ul>
     </header>
 
     <!-- Animated Image -->
     <div class="interface_container">
-        <img id="animatedImage" src="asset/0403_diagram.png" alt="Diagram" class="animated-image" />
+        <img id="animatedImage" src="asset/0403_diagram.png" alt="Diagram" class="animated-image" data-step="0" onclick="cycleImage()" />
     </div>
 
     <script src="main.js"></script>
+    <script>
+        function cycleImage() {
+            var img = document.getElementById('animatedImage');
+            var step = parseInt(img.getAttribute('data-step') || '0', 10);
+            if (step === 0) {
+                img.src = 'asset/4_diagram-01.png';
+                img.setAttribute('data-step', '1');
+            } else if (step === 1) {
+                img.src = 'asset/4_diagram-02.png';
+                img.setAttribute('data-step', '2');
+            } else if (step === 2) { 
+                img.src = 'asset/4_diagram-03.png';
+                img.setAttribute('data-step', '3');
+            } else if (step === 3) {
+                img.src = 'asset/4_diagram-04.png';
+                img.setAttribute('data-step', '4');
+            }
+        }
+    </script>
 </body>
 </html>
