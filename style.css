@@ -112,9 +112,13 @@
   
   /* Text Container and Word Animations (for index.html) */
   .text-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: 80vh;
+    z-index: 10;
+    pointer-events: none; /* This allows interaction with the 3D model underneath */
   }
   .word {
     position: absolute;
@@ -123,6 +127,8 @@
     font-weight: bold;
     animation: wave 10s infinite ease-in-out, fadeIn 3s ease forwards;
     opacity: 0;
+    pointer-events: auto; /* This allows clicking on the words */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add text shadow for better visibility */
   }
   
   /* Individual word positions and delays */
@@ -140,7 +146,7 @@
   .word12 { top: 35%; left: 60%; animation-delay: 1.4s, 1.4s; }
   .word13 { top: 50%; left: 10%; animation-delay: 1.9s, 1.9s; }
   .word14 { top: 30%; left: 80%; animation-delay: 0.3s, 0.3s; }
-.word15 { top: 55%; left: 40%; animation-delay: 0.8s, 0.8s; color: rgb(65, 143, 222); }
+.word15 { top: 55%; left: 40%; animation-delay: 0.8s, 0.8s; color: rgb(65, 143, 222); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
   .word16 { top: 75%; left: 30%; animation-delay: 1.6s, 1.6s; }
   .word17 { top: 5%; left: 85%; animation-delay: 0.4s, 0.4s; }
   .word18 { top: 45%; left: 20%; animation-delay: 1.1s, 1.1s; }
@@ -163,3 +169,11 @@
     from { opacity: 0; }
     to   { opacity: 1; }
   }
+
+.model-container {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  margin-top: 60px;
+  background-color: transparent;
+}

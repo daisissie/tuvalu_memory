@@ -59,3 +59,94 @@ document.addEventListener("DOMContentLoaded", () => {
     animatedImage.addEventListener("click", cycleImage);
   }
 });
+
+// Three.js setup
+let scene, camera, renderer, model, controls;
+
+function init() {
+    // Create scene
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf5f5f5);
+
+    // Create camera
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    // Create renderer
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('model-container').appendChild(renderer.domElement);
+
+    // Add lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
+
+    // Add orbit controls
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+    // Load OBJ model
+    const loader = new THREE.OBJLoader();
+    loader.load(
+        'fan_test/uchiwafan03.obj',
+        function (object) {
+            model = object;
+            scene.add(model);
+            
+            // Center the model
+            const box = new THREE.Box3().setFromObject(model);
+            const center = box.getCenter(new THREE.Vector3());
+            model.position.sub(center);
+            
+            // Scale the model if needed
+            const size = box.getSize(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const scale = 2 / maxDim;
+            model.scale.multiplyScalar(scale);
+
+            // Add a basic material if the model doesn't have one
+            model.traverse(function(child) {
+                if (child instanceof THREE.Mesh) {
+                    if (!child.material) {
+                        child.material = new THREE.MeshPhongMaterial({
+                            color: 0x808080,
+                            shininess: 30
+                        });
+                    }
+                }
+            });
+        },
+        // Progress callback
+        function (xhr) {
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        // Error callback
+        function (error) {
+            console.error('An error occurred while loading the model:', error);
+        }
+    );
+
+    // Handle window resize
+    window.addEventListener('resize', onWindowResize, false);
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+}
+
+// Initialize and start animation
+init();
+animate();
