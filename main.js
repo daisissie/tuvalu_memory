@@ -90,11 +90,17 @@ function init() {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
 
-    // Load OBJ model
-    const loader = new THREE.OBJLoader();
-    loader.load(
-        'fan_test/uchiwafan03.obj',
-        function (object) {
+    // Load materials first
+    const mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setPath('asset/tuvalu_fan_0424054346_texture_obj/');
+    mtlLoader.load('tuvalu_fan_0424054346_texture.mtl', function(materials) {
+        materials.preload();
+
+        // Load OBJ after materials are ready
+        const objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.setPath('asset/tuvalu_fan_0424054346_texture_obj/');
+        objLoader.load('tuvalu_fan_0424054346_texture.obj', function(object) {
             model = object;
             scene.add(model);
             
@@ -109,27 +115,18 @@ function init() {
             const scale = 2 / maxDim;
             model.scale.multiplyScalar(scale);
 
-            // Add a basic material if the model doesn't have one
-            model.traverse(function(child) {
-                if (child instanceof THREE.Mesh) {
-                    if (!child.material) {
-                        child.material = new THREE.MeshPhongMaterial({
-                            color: 0x808080,
-                            shininess: 30
-                        });
-                    }
-                }
-            });
+            // Rotate the model to face the camera
+            model.rotation.x = -Math.PI / 2;
         },
         // Progress callback
-        function (xhr) {
+        function(xhr) {
             console.log((xhr.loaded / xhr.total * 100) + '% loaded');
         },
         // Error callback
-        function (error) {
+        function(error) {
             console.error('An error occurred while loading the model:', error);
-        }
-    );
+        });
+    });
 
     // Handle window resize
     window.addEventListener('resize', onWindowResize, false);
