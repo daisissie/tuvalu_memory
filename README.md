@@ -1,2 +1,2 @@
 # tuvalu_memory
-This is a 
+This is a memory repository 
