@@ -54,5 +54,12 @@ function cycleImage() {
 
 // Keep only DOM content loaded event listener if needed
 document.addEventListener("DOMContentLoaded", () => {
-  // Any initialization code can go here
+  fetch('asset/scripts.txt')
+    .then(response => response.text())
+    .then(text => {
+      const container = document.querySelector('.scrolling-text-container');
+      // Create two copies of the text for seamless looping
+      container.innerHTML = `<div class="scroll-content">${text}</div><div class="scroll-content">${text}</div>`;
+    })
+    .catch(error => console.error('Error loading text:', error));
 });
