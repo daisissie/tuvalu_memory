@@ -272,17 +272,17 @@ body:not(:hover) > .fixed-header {
 }
 .video-icon8 {
     background-color: blue;
-    transform: translate(20px, 70px);
+    transform: translate(-100px, 0px);
 
 }
 .video-icon9 {
     background-color: teal;
-    transform: translate(200px, 70px);
+    transform: translate(0px,-120px);
 
 }
 .video-icon10 {
     background-color: pink;
-    transform: translate(00px, 70px);
+    transform: translate(-200px, 70px);
 
 }
 .video-icon11 {
@@ -292,12 +292,12 @@ body:not(:hover) > .fixed-header {
 }
 .video-icon12 {
     background-color: gray;
-    transform: translate(-300px, 70px);
+    transform: translate(0px, -50px);
 
 }
 .video-icon13 {
     background-color: navy;
-    transform: translate(200px, 70px);
+    transform: translate(100px, -80px);
 
 }
 
