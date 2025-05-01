@@ -1,65 +1,44 @@
-/**
- * main.js
- * This file defines the cycleImage function which cycles through images on click
- * and creates five rectangle containers when reaching step 5.
- */
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('asset/scripts.txt')
+        .then(response => response.text())
+        .then(text => {
+            // Split text in half for two containers
+            const lines = text.split('\n');
+            const midPoint = Math.ceil(lines.length / 2);
+            
+            // First half for left container
+            const content1 = document.querySelector('.scroll-content1');
+            content1.textContent = lines.slice(0, midPoint).join('\n');
+            
+            // Second half for right container
+            const content2 = document.querySelector('.scroll-content2');
+            content2.textContent = lines.slice(midPoint).join('\n');
+            
+            // Double the content for smooth infinite scrolling
+            content1.textContent += '\n\n' + content1.textContent;
+            content2.textContent += '\n\n' + content2.textContent;
+        })
+        .catch(error => console.error('Error loading text:', error));
+});
 
-function cycleImage() {
-  var img = document.getElementById('animatedImage');
-  var step = parseInt(img.getAttribute('data-step') || '0', 10);
-  
-  switch (step) {
-    case 0:
-      img.src = 'asset/4_diagram-01.png';
-      img.setAttribute('data-step', '1');
-      break;
-    case 1:
-      img.src = 'asset/4_diagram-02.png';
-      img.setAttribute('data-step', '2');
-      break;
-    case 2:
-      img.src = 'asset/4_diagram-03.png';
-      img.setAttribute('data-step', '3');
-      break;
-    case 3:
-      img.src = 'asset/4_diagram-04.png';
-      img.setAttribute('data-step', '4');
-      break;
-    case 4:
-      img.src = 'asset/0403_diagram copy.png';
-      img.setAttribute('data-step', '5');
-      break; // Added break to prevent fall-through
-    case 5:
-      // Create 5 rectangle containers for videos with round corners and same background image.
-      for (let i = 0; i < 5; i++) {
-        const videoContainer = document.createElement('div');
-        videoContainer.className = 'video-container';
-        videoContainer.style.width = '300px';
-        videoContainer.style.height = '200px';
-        videoContainer.style.borderRadius = '10px';
-        videoContainer.style.backgroundImage = `url(${img.src})`;
-        videoContainer.style.backgroundSize = 'cover';
-        videoContainer.style.margin = '10px';
-        // Append the container to the document body or a designated parent element.
-        document.body.appendChild(videoContainer);
-      }
-      break;
-    default:
-      // Reset on error
-      img.src = 'asset/0403_diagram.png';
-      img.setAttribute('data-step', '0');
-      break;
-  }
-}
+document.querySelectorAll('.video-click a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const videoSrc = link.getAttribute('data-video');
+        const overlay = document.querySelector('.video-overlay');
+        const video = overlay.querySelector('video');
+        
+        video.src = videoSrc;
+        overlay.style.display = 'flex';
+        video.play();
+    });
+});
 
-// Keep only DOM content loaded event listener if needed
-document.addEventListener("DOMContentLoaded", () => {
-  fetch('asset/scripts.txt')
-    .then(response => response.text())
-    .then(text => {
-      const container = document.querySelector('.scrolling-text-container');
-      // Create two copies of the text for seamless looping
-      container.innerHTML = `<div class="scroll-content">${text}</div><div class="scroll-content">${text}</div>`;
-    })
-    .catch(error => console.error('Error loading text:', error));
+document.querySelector('.close-video').addEventListener('click', () => {
+    const overlay = document.querySelector('.video-overlay');
+    const video = overlay.querySelector('video');
+    
+    video.pause();
+    video.src = '';
+    overlay.style.display = 'none';
 });

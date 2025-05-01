@@ -7,26 +7,114 @@
   <!-- Project CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <!-- Shared fixed header with navigation -->
   <header class="fixed-header">
-    <h1><a class="header-link" href="index.html">Memory Repository</a></h1>
+    <h1><a class="header-link" href="index.html">Memory Tides</a></h1>
     <nav>
       <ul class="toc">
-        <li><a href="about.html">About</a></li>
+        <li><a href="about_fan.html">About</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Grey background -->
-  <div class="grey-background"></div>
-
-  <!-- Fan image container -->
-  <div class="fan-container">
-    <img src="asset/fan_point_cloud.png" alt="Fan Point Cloud" class="fan-image">
+  <!-- Background image (bottom layer) -->
+  <div class="background">
+    <img src="asset/tuvalu_fan_backdissolve_0430.jpg" alt="Tuvalu Fan Background" class="
+    background-image-dissolve">
   </div>
 
-  <div class="scrolling-text-container"></div>
+  <!-- Scrolling text containers -->
+  <div class="scrolling-text-container1">
+    <div class="scroll-content1"></div>
+  </div>
+  <div class="scrolling-text-container2">
+    <div class="scroll-content2"></div>
+  </div>
+
+  <!-- Fan image (top layer) -->
+  <div class="fan-container">
+    <img src="asset/tuvalu_fan_0430.png" alt="Tuvalu Fan" class="fan-image">
+  </div>
+
+  <div class="video-grid">
+    <div class="video-click">
+        <a href="#" data-video="asset/tuvalu_clips/1_ask anything, other women taught her.mp4">
+          <img src="asset/icons/1.png" alt="Tuvalu Video 1" class="video-icon1">
+        </a>
+      </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/2_how long to make it.mp4">
+        <img src="asset/icons/2.png" alt="Tuvalu Video 2" class="video-icon1">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/3_life in funafuti and other island.mp4">
+        <img src="asset/icons/3.png" alt="Tuvalu Video 3" class="video-icon3">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/4_sell and waving process.mp4">
+        <img src="asset/icons/4,5,12,13.png" alt="Tuvalu Video 4" class="video-icon4">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/5_teaching weaving.mp4">
+        <img src="asset/icons/4,5,12,13.png" alt="Tuvalu Video 5" class="video-icon5">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/6_Baipua's daughter in law.mp4">
+        <img src="asset/icons/6.png" alt="Tuvalu Video 6" class="video-icon6">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/7_speak in tuvaluan, ask about new york.mp4">
+        <img src="asset/icons/7,8.png" alt="Tuvalu Video 7" class="video-icon7">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/8_speak in tuvaluan.mp4">
+        <img src="asset/icons/7,8.png" alt="Tuvalu Video 8" class="video-icon8">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/9_young generation.mp4">
+        <img src="asset/icons/9.png" alt="Tuvalu Video 9" class="video-icon9">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/10_son never see the process.mp4">
+        <img src="asset/icons/10.png" alt="Tuvalu Video 10" class="video-icon10">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/11_vine sings.mp4">
+        <img src="asset/icons/11.png" alt="Tuvalu Video 11" class="video-icon11">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/12_process.mp4">
+        <img src="asset/icons/4,5,12,13.png" alt="Tuvalu Video 12" class="video-icon12">
+      </a>
+    </div>
+    <div class="video-click">
+      <a href="#" data-video="asset/tuvalu_clips/13_process contine.mp4">
+        <img src="asset/icons/4,5,12,13.png" alt="Tuvalu Video 13" class="video-icon13">
+      </a>
+    </div>
+  </div>
+
+  <!-- Video Overlay -->
+  <div class="video-overlay">
+    <div class="video-popup">
+      <video controls>
+        <source src="" type="video/mp4">
+      </video>
+      <button class="close-video">×</button>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>
